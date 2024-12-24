@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- Add this before closing </head> tag -->
-  <script src="scripts.js" defer></script>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Teachers - GIKI School & College Reunion 2025</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="scripts.js" defer></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
@@ -48,56 +47,60 @@
       </ul>
     </nav>
 
-    <section class="teachers-grid">
-      <h2 class="faculty-heading">Current Faculty</h2>
-      <div class="faculty-group">
-        <div class="teacher-card">
-          <img src="man.png" alt="Teacher Name" class="teacher-image" />
-          <h3>Qaiser Mushtaq</h3>
-          <p>Senior Mathematics Teacher</p>
-          <button class="thank-btn" onclick="sendHearts(this)">
-            Thank You <i class="fas fa-heart"></i>
-          </button>
-        </div>
-        <div class="teacher-card">
-          <img src="png" alt="Teacher Name" class="teacher-image" />
-          <h3>Dr. Wasim Ahmed</h3>
-          <p>Senior Physics Teacher</p>
-          <button class="thank-btn" onclick="sendHearts(this)">
-            Thank You <i class="fas fa-heart"></i>
-          </button>
-        </div>
-        <div class="teacher-card" data-aos="zoom-in" data-aos-delay="100">
-          <img src="man.png" alt="Dr. Ahmad Khan" class="teacher-image" />
-          <h3>Dr. Ahmad Khan</h3>
-          <p>Computer Science Professor</p>
-          <button class="thank-btn" onclick="sendHearts(this)">
-            Thank You <i class="fas fa-heart"></i>
-          </button>
-        </div>
-      </div>
-
-      <h2 class="faculty-heading">Past Faculty</h2>
-      <div class="faculty-group">
-        <div class="teacher-card">
-          <img src="man.png" alt="Teacher Name" class="teacher-image" />
-          <h3>Tahir Yousaf</h3>
-          <p>Senior Physics Teacher</p>
-          <button class="thank-btn" onclick="sendHearts(this)">
-            Thank You <i class="fas fa-heart"></i>
-          </button>
-        </div>
-        <div class="teacher-card">
-          <img src="man.png" alt="Teacher Name" class="teacher-image" />
-          <h3>Dr. Sarah Khan</h3>
-          <p>Chemistry Department Head</p>
-          <button class="thank-btn" onclick="sendHearts(this)">
-            Thank You <i class="fas fa-heart"></i>
-          </button>
+    <section class="teachers-container">
+      <div class="teachers-column" data-aos="fade-right">
+        <h2 class="faculty-heading">Current Faculty</h2>
+        <div class="faculty-group">
+          <div class="teacher-card">
+            <img src="https://via.placeholder.com/150" alt="Teacher Name" class="teacher-image" />
+            <h3>Qaiser Mushtaq</h3>
+            <p>Senior Mathematics Teacher</p>
+            <button class="thank-btn" onclick="sendHearts(this)">
+              Thank You <i class="fas fa-heart"></i>
+            </button>
+          </div>
+          <div class="teacher-card">
+            <img src="https://via.placeholder.com/150" alt="Teacher Name" class="teacher-image" />
+            <h3>Dr. Wasim Ahmed</h3>
+            <p>Senior Physics Teacher</p>
+            <button class="thank-btn" onclick="sendHearts(this)">
+              Thank You <i class="fas fa-heart"></i>
+            </button>
+          </div>
+          <div class="teacher-card" data-aos="zoom-in" data-aos-delay="100">
+            <img src="https://via.placeholder.com/150" alt="Dr. Ahmad Khan" class="teacher-image" />
+            <h3>Dr. Ahmad Khan</h3>
+            <p>Computer Science Professor</p>
+            <button class="thank-btn" onclick="sendHearts(this)">
+              Thank You <i class="fas fa-heart"></i>
+            </button>
+          </div>
         </div>
       </div>
 
-      <!-- Add more teacher cards as needed -->
+      <div class="animated-divider"></div>
+
+      <div class="teachers-column" data-aos="fade-left">
+        <h2 class="faculty-heading">Past Faculty</h2>
+        <div class="faculty-group">
+          <div class="teacher-card">
+            <img src="https://via.placeholder.com/150" alt="Teacher Name" class="teacher-image" />
+            <h3>Tahir Yousaf</h3>
+            <p>Senior Physics Teacher</p>
+            <button class="thank-btn" onclick="sendHearts(this)">
+              Thank You <i class="fas fa-heart"></i>
+            </button>
+          </div>
+          <div class="teacher-card">
+            <img src="https://via.placeholder.com/150" alt="Teacher Name" class="teacher-image" />
+            <h3>Dr. Sarah Khan</h3>
+            <p>Chemistry Department Head</p>
+            <button class="thank-btn" onclick="sendHearts(this)">
+              Thank You <i class="fas fa-heart"></i>
+            </button>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section class="message-section" data-aos="fade-in">
