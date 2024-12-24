@@ -1,157 +1,106 @@
-/* General Animations */
-@keyframes float {
-  0% {
-    transform: translateY(0px);
+// Navbar scroll effect
+window.addEventListener("scroll", () => {
+  const navbar = document.querySelector(".navbar");
+  if (window.scrollY > 50) {
+    navbar.classList.add("scrolled");
+  } else {
+    navbar.classList.remove("scrolled");
   }
-  50% {
-    transform: translateY(-10px);
+});
+
+// Intersection Observer for scroll animations
+const observerOptions = {
+  threshold: 0.2,
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+    }
+  });
+}, observerOptions);
+
+// Observe volunteer cards
+document.querySelectorAll(".volunteer-card").forEach((card) => {
+  observer.observe(card);
+});
+
+// Observe join-volunteer section
+const joinSection = document.querySelector(".join-volunteer");
+observer.observe(joinSection);
+
+// Initialize AOS
+document.addEventListener("DOMContentLoaded", function () {
+  AOS.init({
+    duration: 1000,
+    once: true,
+    offset: 100,
+  });
+
+  // Add hover effect to volunteer cards
+  const cards = document.querySelectorAll(".volunteer-card");
+  cards.forEach((card) => {
+    card.addEventListener("mouseover", function () {
+      this.style.transform = "translateY(-10px) rotate(2deg)";
+    });
+
+    card.addEventListener("mouseout", function () {
+      this.style.transform = "translateY(0) rotate(0)";
+    });
+  });
+});
+
+// Thank volunteers function
+function thankVolunteers() {
+  const button = document.querySelector(".btn");
+  button.innerHTML = "Thanks Sent! ❤️";
+  button.style.backgroundColor = "#28a745";
+
+  // Create and animate hearts
+  for (let i = 0; i < 10; i++) {
+    createHeart();
   }
-  100% {
-    transform: translateY(0px);
-  }
+
+  setTimeout(() => {
+    button.innerHTML = "Send Thanks ❤️";
+    button.style.backgroundColor = "#ff6b6b";
+  }, 3000);
 }
 
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
+// Create floating hearts
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "❤️";
+  heart.style.cssText = `
+        position: fixed;
+        left: ${Math.random() * 100}vw;
+        bottom: -20px;
+        font-size: 20px;
+        animation: floatHeart 3s ease-in forwards;
+        opacity: 0;
+    `;
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 3000);
 }
 
-/* Header Styles */
-.header {
-  position: relative;
-  overflow: hidden;
-}
-
-.header::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 39, 101, 0.7);
-  z-index: 1;
-}
-
-.header-content {
-  position: relative;
-  z-index: 2;
-}
-
-/* Volunteer Cards */
-.volunteers-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  padding: 2rem;
-}
-
-.volunteer-card {
-  background: white;
-  border-radius: 15px;
-  padding: 1.5rem;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.volunteer-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-}
-
-.volunteer-img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 5px solid #002765;
-  transition: all 0.3s ease;
-}
-
-.volunteer-card:hover .volunteer-img {
-  transform: scale(1.1);
-  border-color: #ff6b6b;
-}
-
-.volunteer-name {
-  margin: 1rem 0;
-  color: #002765;
-  font-size: 1.2rem;
-}
-
-.volunteer-role {
-  color: #666;
-  font-size: 0.9rem;
-  position: relative;
-  padding-bottom: 0.5rem;
-}
-
-.volunteer-role::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50px;
-  height: 2px;
-  background: #002765;
-  transition: width 0.3s ease;
-}
-
-.volunteer-card:hover .volunteer-role::after {
-  width: 100px;
-  background: #ff6b6b;
-}
-
-/* Join Volunteer Section */
-.join-volunteer {
-  text-align: center;
-  padding: 4rem 2rem;
-  background: linear-gradient(135deg, #002765, #001845);
-  color: white;
-}
-
-.btn {
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: 30px;
-  background: #ff6b6b;
-  color: white;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  animation: pulse 2s infinite;
-}
-
-.btn:hover {
-  background: #ff8787;
-  transform: scale(1.05);
-}
-
-/* Social Links Animation */
-.social-icon {
-  transition: all 0.3s ease;
-}
-
-.social-icon:hover {
-  transform: translateY(-5px);
-  color: #ff6b6b;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .volunteers-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-  }
-}
+// Add floating heart animation
+const style = document.createElement("style");
+style.textContent = `
+    @keyframes floatHeart {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-100vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
