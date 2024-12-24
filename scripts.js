@@ -158,20 +158,60 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   AOS.init({
-    duration: 100,
+    duration: 1000,
     once: true,
+    offset: 100
   });
 });
 
-function sendHearts(btn) {
-  const hearts = ["❤️", "💖", "💝", "💕"];
-  for (let i = 0; i < 5; i++) {
-    const heart = document.createElement("span");
-    heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
-    heart.className = "floating-heart";
-    heart.style.left = `${Math.random() * 100}%`;
-    heart.style.animationDelay = `${Math.random() * 2}s`;
-    btn.parentElement.appendChild(heart);
-    setTimeout(() => heart.remove(), 3000);
-  }
+// Initialize AOS (Animate On Scroll)
+document.addEventListener('DOMContentLoaded', function() {
+    AOS.init();
+});
+
+// Handle sticky navbar
+window.onscroll = function() {
+    const navbar = document.getElementById('navbar');
+    if (window.pageYOffset > 0) {
+        navbar.classList.add('sticky');
+    } else {
+        navbar.classList.remove('sticky');
+    }
+};
+
+// Handle the heart animation when clicking "Thank You"
+function sendHearts(button) {
+    // Prevent multiple clicks
+    if (button.classList.contains('clicked')) {
+        return;
+    }
+
+    button.classList.add('clicked');
+    
+    // Create and animate hearts
+    for (let i = 0; i < 5; i++) {
+        const heart = document.createElement('i');
+        heart.classList.add('fas', 'fa-heart', 'floating-heart');
+        
+        // Random position and animation
+        heart.style.left = `${Math.random() * 100}%`;
+        heart.style.animationDelay = `${Math.random() * 0.5}s`;
+        
+        button.appendChild(heart);
+        
+        // Remove heart after animation
+        setTimeout(() => {
+            heart.remove();
+        }, 3000);
+    }
+
+    // Change button text
+    const originalText = button.innerHTML;
+    button.innerHTML = 'Thank You! ❤️';
+    
+    // Optional: Reset button after some time
+    setTimeout(() => {
+        button.classList.remove('clicked');
+        button.innerHTML = originalText;
+    }, 3000);
 }
