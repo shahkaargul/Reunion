@@ -225,38 +225,54 @@ section {
 
 /* Teacher Cards Styling and Animation */
 .teachers-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
     padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.faculty-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
 }
 
 .teacher-card {
-    perspective: 1500px;
+    perspective: 1000px;
     height: 400px;
+    opacity: 1 !important;
 }
 
 .card-inner {
     position: relative;
     width: 100%;
     height: 100%;
-    transform-style: preserve-3d;
     transition: transform 0.8s;
+    transform-style: preserve-3d;
+    cursor: pointer;
 }
 
 .teacher-card:hover .card-inner {
     transform: rotateY(180deg);
 }
 
-.card-front, .card-back {
+.card-front {
     position: absolute;
     width: 100%;
     height: 100%;
     backface-visibility: hidden;
     border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     background: white;
+    padding: 1.5rem;
+    opacity: 1 !important;
+}
+
+.card-front h3, 
+.card-front p {
+    opacity: 1 !important;
+    color: #002765;
+    margin: 0.5rem 0;
 }
 
 .card-back {
@@ -269,34 +285,43 @@ section {
 }
 
 .teacher-image {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     object-fit: cover;
-    margin: 0 auto;
+    margin: 0 auto 1rem;
     display: block;
-    transition: transform 0.3s;
-    border: 4px solid #002765;
+    border: 3px solid #002765;
+    transition: transform 0.3s ease;
+    opacity: 1 !important;
 }
 
 .teacher-card:hover .teacher-image {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
-.contact-btn {
-    padding: 10px 20px;
-    background: white;
-    color: #002765;
-    border: none;
+.thank-btn {
+    padding: 0.8rem 1.5rem;
+    border: 2px solid white;
+    background: transparent;
+    color: white;
     border-radius: 25px;
     cursor: pointer;
-    margin-top: 1rem;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
 }
 
-.contact-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+.thank-btn:hover {
+    background: white;
+    color: #002765;
+}
+
+[data-aos] {
+    transform: translateY(20px);
+    transition-property: transform;
+}
+
+[data-aos].aos-animate {
+    transform: translateY(0);
 }
 
 /* Message Section Animation */
@@ -850,4 +875,104 @@ blockquote::after {
 
 .pulse {
     animation: pulse 2s infinite;
+}
+
+.thank-btn {
+    background: #ff4b6e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.thank-btn:hover {
+    background: #ff2d55;
+    transform: scale(1.05);
+}
+
+.thank-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+.floating-heart {
+    position: absolute;
+    color: #ff4b6e;
+    font-size: 20px;
+    pointer-events: none;
+    animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100px) scale(0);
+        opacity: 0;
+    }
+}
+
+.faculty-heading {
+    width: 100%;
+    text-align: center;
+    margin: 2rem 0;
+    color: #002765;
+    font-size: 2rem;
+}
+
+.faculty-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.checkbox-label:hover {
+    transform: translateX(5px);
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #002765;
+}
+
+/* Animation for new form groups */
+.form-group {
+    transition: all 0.3s ease;
+}
+
+.form-group:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .checkbox-group {
+        padding: 0 10px;
+    }
+    
+    .checkbox-label {
+        font-size: 0.9em;
+    }
 }
