@@ -215,3 +215,38 @@ function sendHearts(button) {
         button.innerHTML = originalText;
     }, 3000);
 }
+
+function sendHeartsToAll() {
+    // Number of hearts to create
+    const heartCount = 12;
+    const button = document.querySelector('.thank-all-btn');
+    const buttonRect = button.getBoundingClientRect();
+
+    // Create multiple hearts
+    for (let i = 0; i < heartCount; i++) {
+        setTimeout(() => {
+            const heart = document.createElement('i');
+            heart.className = 'fas fa-heart heart';
+            
+            // Random position around the button
+            const randomX = buttonRect.left + Math.random() * buttonRect.width;
+            const randomOffset = (Math.random() - 0.5) * 100; // Spread hearts horizontally
+            
+            heart.style.left = `${randomX + randomOffset}px`;
+            heart.style.top = `${buttonRect.top + buttonRect.height/2}px`;
+            
+            document.body.appendChild(heart);
+            
+            // Remove heart element after animation
+            setTimeout(() => {
+                heart.remove();
+            }, 2000);
+        }, i * 100); // Stagger the heart creation
+    }
+
+    // Add button animation
+    button.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+        button.style.transform = 'scale(1)';
+    }, 200);
+}
